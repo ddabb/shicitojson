@@ -9,12 +9,25 @@ namespace shicitojson
     /// <summary>
     /// 诗人
     /// </summary>
-    internal class poet
+    internal class Poet
     {
+        private string mid;
+
         /// <summary>
-        /// 诗人的id
+        /// 诗人的_id 和小程序的记录的id映射对应上
         /// </summary>
-        public string poetid { get; set; }
+        public string _id
+        {
+            get
+            {
+                if (string.IsNullOrEmpty(mid))
+                {
+                    mid = Guid.NewGuid().ToString().Replace("-", "");
+                }
+                return mid;
+            }
+            set { mid = value; }
+        }
         /// <summary>
         /// 姓名
         /// </summary>
@@ -30,9 +43,20 @@ namespace shicitojson
         public string dynasty { get; set; }
 
         /// <summary>
+        /// 出生时间
+        /// </summary>
+        public string birth { get; set; }
+
+        /// <summary>
+        /// 死亡时间
+        /// </summary>
+        public string death { get; set; }
+
+        /// <summary>
         /// 诗歌id
         /// </summary>
-        public List<string> poemIds { get; set; }
+        public List<string> poemIds { get; set; }=new List<string>();
+
     }
 }
 
